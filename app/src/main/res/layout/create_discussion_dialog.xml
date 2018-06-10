@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/createTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="16dp"
+        android:hint="Titel"
+        android:inputType="textEmailAddress" />
+
+
+    <EditText
+        android:id="@+id/createTextRegion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Wähle eine Region"
+        android:inputType="none"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <LinearLayout
+        android:id="@+id/createRegions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/createLokal"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_local"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createDeutschland"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_germany"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createEU"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_europe"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createWelt"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_world"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/createTextCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Wähle die passenden Kategorien"
+        android:inputType="none"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <LinearLayout
+        android:id="@+id/createCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/createCatGesundheit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_health"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createCatWirtschaft"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_economy"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createCatVerbrechen"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_crime"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createCatUmwelt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_environment"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createCatArbeit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_work"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createCatInfrastruktur"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_infrastructure"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/createCatGesellschaft"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/check_social"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/createTextEnter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Was möchtest du sagen" />
+
+    <EditText
+        android:id="@+id/createContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Text"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>

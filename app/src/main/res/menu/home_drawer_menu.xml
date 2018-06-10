@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemMenuRegion"
+        android:title="Regionen">
+        <menu>
+                <item
+                    android:id="@+id/itemRegionLokal"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_local"
+                    android:title="Landkreis"
+                    android:titleCondensed="Landkreis" />
+                <item
+                    android:id="@+id/itemRegionDeutschland"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_germany"
+                    android:title="Deutschland"
+                    android:titleCondensed="Deutschland" />
+                <item
+                    android:id="@+id/itemRegionEu"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_europe"
+                    android:title="Europa"
+                    android:titleCondensed="Europa" />
+                <item
+                    android:id="@+id/itemRegionWelt"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_world"
+                    android:title="Welt"
+                    android:titleCondensed="Welt" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/itemMenuCategories"
+        android:title="Kategorien">
+        <menu>
+                <item
+                    android:id="@+id/itemCatGesellschaft"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_social"
+                    android:title="Gesellschaft"
+                    android:titleCondensed="Gesellschaft" />
+
+                <item
+                    android:id="@+id/itemCatGesundheit"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_health"
+                    android:title="Gesundheit"
+                    android:titleCondensed="Gesundheit" />
+                <item
+                    android:id="@+id/itemCatUmwelt"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_environment"
+                    android:title="Umwelt"
+                    android:titleCondensed="Umwelt" />
+                <item
+                    android:id="@+id/itemCatVerbrechen"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_crime"
+                    android:title="Verbrechen"
+                    android:titleCondensed="Verbrechen" />
+                <item
+                    android:id="@+id/itemCatInfrastruktur"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_infrastructure"
+                    android:title="Infrastruktur"
+                    android:titleCondensed="Infrastruktur" />
+                <item
+                    android:id="@+id/itemCatWirtschaft"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_economy"
+                    android:title="Wirtschaft und Finanzen"
+                    android:titleCondensed="Wirtschaft und Finanzen" />
+                <item
+                    android:id="@+id/itemCatArbeit"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:icon="@drawable/check_work"
+                    android:title="Arbeit und Bildung"
+                    android:titleCondensed="Arbeit und Bildung" />
+        </menu>
+    </item>
+</menu>

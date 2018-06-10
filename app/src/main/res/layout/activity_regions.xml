@@ -42,17 +42,29 @@
                     android:baselineAligned="false"
                     android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/imageView5"
+                    <ToggleButton
+                        android:id="@+id/regionSelectLokal"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:srcCompat="@drawable/landkreis" />
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/check_local"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textOff=""
+                        android:textOn="" />
 
-                    <ImageView
-                        android:id="@+id/imageView4"
+                    <ToggleButton
+                        android:id="@+id/regionSelectDeutschland"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:srcCompat="@drawable/deutschland" />
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/check_germany"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textOff=""
+                        android:textOn="" />
 
                 </TableRow>
 
@@ -88,19 +100,29 @@
                     android:baselineAligned="false"
                     android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/imageView3"
+                    <ToggleButton
+                        android:id="@+id/regionSelectEU"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:layout_margin="5dp"
-                        app:srcCompat="@drawable/eu" />
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/check_europe"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textOff=""
+                        android:textOn="" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
+                    <ToggleButton
+                        android:id="@+id/regionSelectWelt"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:layout_margin="5dp"
-                        app:srcCompat="@drawable/welt" />
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/check_world"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:textOff=""
+                        android:textOn="" />
                 </TableRow>
 
                 <TableRow
@@ -137,6 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Weiter"
+            android:enabled="false"
             android:textStyle="bold" />
 
     </LinearLayout>
