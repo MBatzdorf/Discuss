@@ -99,15 +99,18 @@
         android:id="@+id/createCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ToggleButton
             android:id="@+id/createCatGesundheit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_health"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -116,9 +119,11 @@
 
         <ToggleButton
             android:id="@+id/createCatWirtschaft"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_economy"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -127,9 +132,11 @@
 
         <ToggleButton
             android:id="@+id/createCatVerbrechen"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_crime"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -138,9 +145,11 @@
 
         <ToggleButton
             android:id="@+id/createCatUmwelt"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_environment"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -149,9 +158,11 @@
 
         <ToggleButton
             android:id="@+id/createCatArbeit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_work"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -160,9 +171,11 @@
 
         <ToggleButton
             android:id="@+id/createCatInfrastruktur"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_infrastructure"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -171,9 +184,11 @@
 
         <ToggleButton
             android:id="@+id/createCatGesellschaft"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:background="@drawable/check_social"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -181,20 +196,5 @@
             android:textOn="" />
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/createTextEnter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Was möchtest du sagen" />
-
-    <EditText
-        android:id="@+id/createContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Text"
-        android:inputType="textMultiLine" />
 
 </LinearLayout>

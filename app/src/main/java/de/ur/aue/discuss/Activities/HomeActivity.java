@@ -1,40 +1,48 @@
-package de.ur.aue.discuss;
+package de.ur.aue.discuss.Activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import de.ur.aue.discuss.DiscussionsFragment.OnListFragmentInteractionListener;
-import de.ur.aue.discuss.dummy.DummyContent.DummyItem;
+import de.ur.aue.discuss.Adapter.DiscussionsRecyclerViewAdapter;
+import de.ur.aue.discuss.Fragments.CreateDiscussionFragment;
+import de.ur.aue.discuss.Fragments.DiscussionsFragment;
+import de.ur.aue.discuss.Fragments.DiscussionsFragment.OnListFragmentInteractionListener;
+import de.ur.aue.discuss.Models.DiscussionItemElement.DiscussionItem;
+import de.ur.aue.discuss.R;
 
 public class HomeActivity extends AppCompatActivity implements OnListFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private View mNavigationHeader;
     private Menu mNavigationMenu;
 
     private HashMap<String, Boolean> RegionsMap;
     private HashMap<String, Boolean> CategoriesMap;
 
+    private DiscussionsRecyclerViewAdapter mDiscussionsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +51,21 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
 
         RegionsMap = new HashMap<>();
         CategoriesMap = new HashMap<>();
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        DiscussionsFragment discFrag = (DiscussionsFragment) fragmentManager.findFragmentById(R.id.fragmentDiscussion);
+        RecyclerView discussionList = discFrag.getRecyclerView();
+        mDiscussionsAdapter = (DiscussionsRecyclerViewAdapter) discussionList.getAdapter();
         mNavigationView = findViewById(R.id.nav_view);
         mNavigationView.setItemIconTintList(null);
-
         mNavigationMenu = mNavigationView.getMenu();
+        mNavigationHeader = mNavigationView.getHeaderView(0);
 
         initMapsAndMenuFromSharedPrevs();
+
+        mDiscussionsAdapter.setEmptyDiscussionsLayout((LinearLayout) findViewById(R.id.layoutNoDiscussions));
+        mDiscussionsAdapter.setFilterMaps(RegionsMap, CategoriesMap);
+        mDiscussionsAdapter.getFilter().filter(null);
+
 
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +79,14 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
                             menuItem.setChecked(true);
                         }
 
+                        if(RegionsMap.containsKey(menuItem.getTitle()))
+                            RegionsMap.put(menuItem.getTitle().toString(), !isChecked);
+                        if(CategoriesMap.containsKey(menuItem.getTitle()))
+                            CategoriesMap.put(menuItem.getTitle().toString(), !isChecked);
+
+                        mDiscussionsAdapter.getFilter().filter(null);
+
+
                         updateSharedPrevs(menuItem.getTitle().toString(), !isChecked);
 
                         // Add code here to update the UI based on the item selected
@@ -73,7 +97,7 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
                 });
 
         mDrawerLayout = findViewById(R.id.homeDraweLayout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbarHome);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
@@ -94,6 +118,11 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
     private void initMapsAndMenuFromSharedPrevs() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
                 getString(R.string.shared_prevs_filename), Context.MODE_PRIVATE);
+
+        TextView headerUsername = mNavigationHeader.findViewById(R.id.textHeaderUsername);
+        String usernameString = "Default User";
+        usernameString = sharedPref.getString(getString(R.string.saved_username), usernameString);
+        headerUsername.setText(usernameString);
 
         boolean defaultValue = false;
         Menu catItems = mNavigationMenu.findItem(R.id.itemMenuCategories).getSubMenu();
@@ -158,8 +187,8 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
         currentItem = regItems.findItem(R.id.itemRegionWelt);
         currentItem.setChecked(isActive);
 
-        printMap(CategoriesMap);
-        printMap(RegionsMap);
+        //printMap(CategoriesMap);
+        //printMap(RegionsMap);
     }
 
 
@@ -185,9 +214,10 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
 
 
     @Override
-    public void onListFragmentInteraction(DummyItem item) {
-        Toast toast = Toast.makeText(this, item.title, Toast.LENGTH_SHORT);
-        toast.show();
+    public void onListFragmentInteraction(DiscussionItem item) {
+        Intent intent = new Intent(getApplicationContext(), DiscussionActivity.class);
+        intent.putExtra("DiscussionItem", item);
+        startActivity(intent);
     }
 
 
@@ -195,8 +225,7 @@ public class HomeActivity extends AppCompatActivity implements OnListFragmentInt
         Iterator it = MapToPrint.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            Log.w("MapPrinter", pair.getKey() + ":" + pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
+            Log.w("FILTERING", pair.getKey() + ":" + pair.getValue());
         }
     }
 }

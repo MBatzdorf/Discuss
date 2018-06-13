@@ -1,4 +1,4 @@
-package de.ur.aue.discuss;
+package de.ur.aue.discuss.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import de.ur.aue.discuss.dummy.DummyContent;
-import de.ur.aue.discuss.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import de.ur.aue.discuss.Adapter.DiscussionsRecyclerViewAdapter;
+import de.ur.aue.discuss.Models.DiscussionItemElement;
+import de.ur.aue.discuss.Models.DiscussionItemElement.DiscussionItem;
+import de.ur.aue.discuss.R;
 
 /**
  * A fragment representing a list of Items.
@@ -23,11 +23,10 @@ import java.util.List;
  */
 public class DiscussionsFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -36,7 +35,6 @@ public class DiscussionsFragment extends Fragment {
     public DiscussionsFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static DiscussionsFragment newInstance(int columnCount) {
         DiscussionsFragment fragment = new DiscussionsFragment();
@@ -63,17 +61,20 @@ public class DiscussionsFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new DiscussionsRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new DiscussionsRecyclerViewAdapter(DiscussionItemElement.ITEMS, mListener));
         }
         return view;
     }
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -103,7 +104,6 @@ public class DiscussionsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(DiscussionItem item);
     }
 }

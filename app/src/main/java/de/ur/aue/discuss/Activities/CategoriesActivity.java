@@ -1,4 +1,4 @@
-package de.ur.aue.discuss;
+package de.ur.aue.discuss.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.ToggleButton;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import de.ur.aue.discuss.R;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -64,7 +66,6 @@ public class CategoriesActivity extends AppCompatActivity {
                 while (it.hasNext()) {
                     Map.Entry pair = (Map.Entry)it.next();
                     editor.putBoolean((String) pair.getKey(), (Boolean) pair.getValue());
-                    it.remove(); // avoids a ConcurrentModificationException
                 }
 
                 editor.commit();

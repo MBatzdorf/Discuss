@@ -1,7 +1,7 @@
-package de.ur.aue.discuss.dummy;
+package de.ur.aue.discuss.Models;
 
-import android.media.Image;
-import android.widget.ImageView;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,19 +14,13 @@ import de.ur.aue.discuss.R;
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
  * <p>
- * TODO: Replace all uses of this class before publishing your app.
  */
-public class DummyContent {
+public class DiscussionItemElement {
 
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
-
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static final List<DiscussionItem> ITEMS = new ArrayList<DiscussionItem>();
 
     private static int id_regionEU =  R.drawable.eu;
     private static int id_regionLocal =  R.drawable.landkreis;
@@ -41,7 +35,6 @@ public class DummyContent {
     private static int id_catInfrastructure =  R.drawable.infrastruktur;
     private static int id_catWork =  R.drawable.arbeit;
 
-    private static final int COUNT = 25;
 
     static {
         // Add some sample items.
@@ -73,13 +66,12 @@ public class DummyContent {
         addItem(createDummyItem(0, "Trump hat das Internet gelöscht", id_regionWorld, tempCategories4));
     }
 
-    private static void addItem(DummyItem item) {
+    private static void addItem(DiscussionItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position, String title, int region, ArrayList<Integer> categories) {
-        return new DummyItem(String.valueOf(position), title, region, categories);
+    private static DiscussionItem createDummyItem(int position, String title, int region, ArrayList<Integer> categories) {
+        return new DiscussionItem(title, region, categories);
     }
 
     private static String makeDetails(int position) {
@@ -94,18 +86,45 @@ public class DummyContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class DummyItem {
-        public final String id;
+    public static class DiscussionItem implements Parcelable {
         public final String title;
         public final int region;
         public  ArrayList<Integer> categories;
 
-        public DummyItem(String id, String title, int region, ArrayList<Integer> categories) {
-            this.id = id;
+        public DiscussionItem(String title, int region, ArrayList<Integer> categories) {
             this.title = title;
             this.region = region;
             this.categories = categories;
         }
+
+        protected DiscussionItem(Parcel in) {
+            title = in.readString();
+            region = in.readInt();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(title);
+            dest.writeInt(region);
+            dest.writeList(categories);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<DiscussionItem> CREATOR = new Creator<DiscussionItem>() {
+            @Override
+            public DiscussionItem createFromParcel(Parcel in) {
+                return new DiscussionItem(in);
+            }
+
+            @Override
+            public DiscussionItem[] newArray(int size) {
+                return new DiscussionItem[size];
+            }
+        };
 
         @Override
         public String toString() {

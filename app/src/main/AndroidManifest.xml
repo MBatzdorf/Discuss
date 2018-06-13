@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegionsActivity" />
-        <activity android:name=".CategoriesActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".Activities.RegionsActivity" />
+        <activity android:name=".Activities.CategoriesActivity" />
+        <activity android:name=".Activities.HomeActivity" />
+        <activity android:name=".Activities.DiscussionActivity"></activity>
     </application>
 
 </manifest>

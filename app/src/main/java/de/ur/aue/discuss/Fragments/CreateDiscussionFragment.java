@@ -1,8 +1,9 @@
-package de.ur.aue.discuss;
+package de.ur.aue.discuss.Fragments;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -20,10 +21,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+
+import de.ur.aue.discuss.Activities.DiscussionActivity;
+import de.ur.aue.discuss.Models.DiscussionItemElement.DiscussionItem;
+import de.ur.aue.discuss.R;
+
 public class CreateDiscussionFragment extends DialogFragment {
 
     private EditText mTitle;
-    private EditText mContent;
     private EditText regEdit;
     private EditText catEdit;
 
@@ -56,7 +62,6 @@ public class CreateDiscussionFragment extends DialogFragment {
         createDialogView = inflater.inflate(R.layout.create_discussion_dialog, (ViewGroup) getView(), false);
 
         mTitle = createDialogView.findViewById(R.id.createTitle);
-        mContent = createDialogView.findViewById(R.id.createContent);
         regEdit = createDialogView.findViewById(R.id.createTextRegion);
         catEdit = createDialogView.findViewById(R.id.createTextCat);
 
@@ -140,13 +145,13 @@ public class CreateDiscussionFragment extends DialogFragment {
 
         // Reset errors.
         mTitle.setError(null);
-        mContent.setError(null);
         regEdit.setError(null);
         catEdit.setError(null);
 
-        // Store values at the time of the login attempt.
+        // Store values
         String sTitle = mTitle.getText().toString();
-        String sContent = mContent.getText().toString();
+        int regionButtonId = R.drawable.landkreis;
+        ArrayList<Integer> setCategories = new ArrayList<>();
 
         boolean cancel = false;
         View focusView = null;
@@ -155,8 +160,17 @@ public class CreateDiscussionFragment extends DialogFragment {
         boolean isRegionSet = false;
         for(ToggleButton rBtn : regionButtons)
         {
-            if(rBtn.isChecked())
+            if(rBtn.isChecked()) {
                 isRegionSet = true;
+                if(rBtn == mLocal)
+                    regionButtonId = R.drawable.landkreis;
+                if(rBtn == mGermany)
+                    regionButtonId = R.drawable.deutschland;
+                if(rBtn == mEU)
+                    regionButtonId = R.drawable.eu;
+                if(rBtn == mWorld)
+                    regionButtonId = R.drawable.welt;
+            }
         }
         if(!isRegionSet) {
             focusView = regEdit;
@@ -168,8 +182,23 @@ public class CreateDiscussionFragment extends DialogFragment {
         boolean isCategorySet = false;
         for(ToggleButton cBtn : categoryButtons)
         {
-            if(cBtn.isChecked())
+            if(cBtn.isChecked()) {
                 isCategorySet = true;
+                if(cBtn == mHealth)
+                    setCategories.add(R.drawable.gesundheit);
+                if(cBtn == mEconomy)
+                    setCategories.add(R.drawable.wirtschaft);
+                if(cBtn == mCrime)
+                    setCategories.add(R.drawable.verbrechen);
+                if(cBtn == mEnvironment)
+                    setCategories.add(R.drawable.umwelt);
+                if(cBtn == mWork)
+                    setCategories.add(R.drawable.arbeit);
+                if(cBtn == mSocial)
+                    setCategories.add(R.drawable.gesellschaft);
+                if(cBtn == mInfrastructure)
+                    setCategories.add(R.drawable.infrastruktur);
+            }
         }
         if(!isCategorySet) {
             focusView = catEdit;
@@ -188,17 +217,6 @@ public class CreateDiscussionFragment extends DialogFragment {
             cancel = true;
         }
 
-        // Check for a valid content.
-        if (TextUtils.isEmpty(sContent)) {
-            mContent.setError("Du musst einen Text eingeben");
-            focusView = mContent;
-            cancel = true;
-        } else if (sContent.length() < 3) {
-            mContent.setError("Der Text muss länger als 3 Zeichen sein");
-            focusView = mContent;
-            cancel = true;
-        }
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -206,7 +224,10 @@ public class CreateDiscussionFragment extends DialogFragment {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            // TODO Success creating discussion
+            DiscussionItem newDiscussion = new DiscussionItem(sTitle, regionButtonId, setCategories);
+            Intent intent = new Intent(getActivity(), DiscussionActivity.class);
+            intent.putExtra("DiscussionItem", newDiscussion);
+            startActivity(intent);
         }
 
         return !cancel;
