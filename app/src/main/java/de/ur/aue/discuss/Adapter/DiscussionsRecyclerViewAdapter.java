@@ -13,6 +13,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import de.ur.aue.discuss.Fragments.DiscussionsFragment.OnListFragmentInteractionListener;
 import de.ur.aue.discuss.Models.DiscussionItemElement.DiscussionItem;
 import de.ur.aue.discuss.R;
@@ -40,11 +51,12 @@ public class DiscussionsRecyclerViewAdapter extends RecyclerView.Adapter<Discuss
 
     private LinearLayout mLayoutNoDiscussions;
 
-    public DiscussionsRecyclerViewAdapter(List<DiscussionItem> items, OnListFragmentInteractionListener listener) {
-        mDiscussionValues = items;
+    public DiscussionsRecyclerViewAdapter(OnListFragmentInteractionListener listener) {
         mFilteredDiscussionValues = new ArrayList<>();
+        mDiscussionValues = new ArrayList<>();
         mListener = listener;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -113,6 +125,10 @@ public class DiscussionsRecyclerViewAdapter extends RecyclerView.Adapter<Discuss
     {
         RegionsMap = inRegionsMap;
         CategoriesMap = inCategoriesMap;
+    }
+
+    public void setDiscussionItems(List<DiscussionItem> Discussions){
+        mDiscussionValues = Discussions;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

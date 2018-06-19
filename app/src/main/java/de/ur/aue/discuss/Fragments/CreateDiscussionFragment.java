@@ -218,13 +218,9 @@ public class CreateDiscussionFragment extends DialogFragment {
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            DiscussionItem newDiscussion = new DiscussionItem(sTitle, regionButtonId, setCategories);
+            DiscussionItem newDiscussion = new DiscussionItem(-1, sTitle, regionButtonId, setCategories);
             Intent intent = new Intent(getActivity(), DiscussionActivity.class);
             intent.putExtra("DiscussionItem", newDiscussion);
             startActivity(intent);

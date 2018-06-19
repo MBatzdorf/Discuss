@@ -6,15 +6,21 @@ import java.util.Calendar;
 
 public class BaseMessage {
 
-    private String sender;
+    private String title;
+    private int id;
     private String message;
-    private Date dateOfCreation;
 
-    public BaseMessage(String inSender, String inMessage, Date inDate)
+    public BaseMessage(String title, String inMessage)
     {
-        this.sender = inSender;
         this.message = inMessage;
-        this.dateOfCreation = inDate;
+        this.title = title;
+    }
+
+    public BaseMessage(String title, int id, String inMessage)
+    {
+        this.message = inMessage;
+        this.title = title;
+        this.id = id;
     }
 
     public String getMessage()
@@ -22,13 +28,15 @@ public class BaseMessage {
         return message;
     }
 
-    public String getSender()
-    {
-        return sender;
+    public int getId() {
+        return id;
     }
 
-    public String getCreatedAt()
-    {
-        return dateOfCreation.toString();
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

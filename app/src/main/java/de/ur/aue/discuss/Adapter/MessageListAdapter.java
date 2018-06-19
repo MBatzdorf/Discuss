@@ -36,6 +36,13 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         return mMessageList.size();
     }
 
+    public BaseMessage getItem(int index) {
+        if(index >= 0 && index < getItemCount()) {
+            return mMessageList.get(index);
+        }
+        return null;
+    }
+
     public void addMessageItem(BaseMessage newMessage)
     {
         mMessageList.add(newMessage);
@@ -46,7 +53,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         BaseMessage message =  mMessageList.get(position);
 
-        if (message.getSender().equals(username)) {
+        if (message.getTitle().equals(username)) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
         } else {
@@ -91,32 +98,26 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     }
 
     private class SentMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, timeText;
-
+        TextView messageText;
         SentMessageHolder(View itemView) {
             super(itemView);
 
             messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
             Log.w("CHATVIEW", "SentMessage initited");
         }
 
         void bind(BaseMessage message) {
             messageText.setText(message.getMessage());
-
-            // Format the stored timestamp into a readable String using method.
-            timeText.setText(message.getCreatedAt());
         }
     }
 
     private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, timeText, nameText;
+        TextView messageText, nameText;
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
 
             messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
             nameText = (TextView) itemView.findViewById(R.id.text_message_name);
             Log.w("CHATVIEW", "Received message inited");
         }
@@ -125,9 +126,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             messageText.setText(message.getMessage());
 
             // Format the stored timestamp into a readable String using method.
-            timeText.setText(message.getCreatedAt());
-
-            nameText.setText(message.getSender());
+            nameText.setText(message.getTitle());
         }
     }
 }

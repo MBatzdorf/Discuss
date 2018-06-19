@@ -70,8 +70,8 @@ public class DiscussionItemElement {
         ITEMS.add(item);
     }
 
-    private static DiscussionItem createDummyItem(int position, String title, int region, ArrayList<Integer> categories) {
-        return new DiscussionItem(title, region, categories);
+    private static DiscussionItem createDummyItem(int id, String title, int region, ArrayList<Integer> categories) {
+        return new DiscussionItem(id, title, region, categories);
     }
 
     private static String makeDetails(int position) {
@@ -87,23 +87,27 @@ public class DiscussionItemElement {
      * A dummy item representing a piece of content.
      */
     public static class DiscussionItem implements Parcelable {
+        public int id;
         public final String title;
         public final int region;
         public  ArrayList<Integer> categories;
 
-        public DiscussionItem(String title, int region, ArrayList<Integer> categories) {
+        public DiscussionItem(int id, String title, int region, ArrayList<Integer> categories) {
+            this.id = id;
             this.title = title;
             this.region = region;
             this.categories = categories;
         }
 
         protected DiscussionItem(Parcel in) {
+            id = in.readInt();
             title = in.readString();
             region = in.readInt();
         }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(id);
             dest.writeString(title);
             dest.writeInt(region);
             dest.writeList(categories);
